@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<title>Home Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- create navigation bar (header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">TSP</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="container">
+		<h1>Get your access token from Hospital</h1>
+
+		Welcome <span sec:authentication="principal.username">User</span> <br>
+		<br> <br> <br>
+		<div class="container">
+			<p>按下按鈕會導到Hospital取得授權</p>
+			<a class="btn btn-primary" target="_blank" role="button"
+				href="https://dev-3256198.okta.com/oauth2/default/v1/authorize?client_id=0oa2bhv1sIFEXlYMq5d6&response_type=code&scope=medical&redirect_uri=http://localhost:10000/authorization&state=state">go
+				get access token</a>
+		</div>
+		<br> <br>
+
+	</div>
+</body>
+</html>

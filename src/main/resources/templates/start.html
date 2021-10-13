@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<title>Home Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- create navigation bar (header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">TSP</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="container">
+		<h1>Get your access token from Bank A</h1>
+
+		Welcome <span sec:authentication="principal.username">User</span> <br>
+		<br> <br> <br>
+		<div class="container">
+			<p>按下按鈕會導到Bank A</p>
+			<a class="btn btn-primary" target="_blank" role="button"
+				href="https://112.121.74.27:48082/dcv.default/AuthCodeDemo/oauth/authorize?response_type=code&client_id=NCCUclient5&redirect_uri=https://www.google.com">go
+				get access token</a>
+		</div>
+		<br> <br>
+		<div>
+			<form action="authcode" method="post">
+				<input type="hidden" name="_csrf"
+					th:value="${_csrf.token}" /> <input type="text"
+					name=authcode> <input type="submit" value="送出authcode">
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>
